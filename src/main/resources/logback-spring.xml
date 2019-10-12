@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+
+	<!-- 日志文件路径 -->
+	<springProperty scope="context" name="log.base" source="buyi.log.path"
+		defaultValue="/log/buyi-admin" />
+	<!-- 日志文件最大 -->
+	<springProperty scope="context" name="maxFileSize"
+		source="buyi.log.size" defaultValue="2GB" />
+
+	<springProfile name="dev,test">
+		<property name="logPattern"
+			value="%date|%-5level|%.-20000000msg|%X{uuid}|%X{url} |%file %line|%logger %ex %n"></property>
+	</springProfile>
+
+	<springProfile name="prod">
+		<property name="logPattern"
+			value="%date|%-5level|%.-20000000msg|%X{uuid}|%X{url} | %ex %n"></property>
+	</springProfile>
+
+	<!-- 输出日志到控制台 ConsoleAppender -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${logPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 输出日志到文件 每天一个文件 -->
+	<appender name="dailyRollingFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/stdout.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover 200M写一个文件 -->
+			<FileNamePattern>${log.base}/stdout_%d{yyyy-MM-dd}-%i.log
+			</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>${logPattern}</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="asyncCommonAppender" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>1024</queueSize>
+		<appender-ref ref="dailyRollingFileAppender" />
+	</appender>
+
+	<springProfile name="test">
+		<root level="debug">
+			<appender-ref ref="console" />
+			<appender-ref ref="dailyRollingFileAppender" />
+		</root>
+	</springProfile>
+
+	<springProfile name="dev">
+		<root level="info">
+			<appender-ref ref="console" />
+			<appender-ref ref="dailyRollingFileAppender" />
+		</root>
+	</springProfile>
+	<springProfile name="prod">
+		<root level="info">
+			<appender-ref ref="console" />
+			<appender-ref ref="asyncCommonAppender" />
+		</root>
+	</springProfile>
+
+</configuration>
