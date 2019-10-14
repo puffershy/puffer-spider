@@ -16,7 +16,7 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
  */
 @Data
 @ExtractBy(value="//*[@id=\"zg-right-col\"]",multi =true)
-@HelpUrl({"",""})
+@HelpUrl({"https://www.amazon.com/gp/new-releases/home-garden/13749881/ref=zg_bsnr_pg_\\d/146-8751176-4088033?ie=UTF8&pg=\\d"})
 @TargetUrl("http://www.amazon.cn/s/ref=sr_pg_\\S+?rh=\\S+")
 public class AmazonItem {
     private Integer id;
