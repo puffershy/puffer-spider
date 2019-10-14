@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.puffer.spider.dao.AmazonItemDao">
+
+    <sql id="Base_Column_List">
+		id, type, title, price, url,rank
+	</sql>
+
+    <insert id="save" parameterType="com.puffer.spider.entity.AmazonItem">
+      insert into tb_amazon_item
+      (title, price, url,rank)
+      values
+        (#{title},#{price},#{url},#{rank})
+    </insert>
+
+</mapper>

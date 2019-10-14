@@ -35,7 +35,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
 
     public static void main(String[] args) {
         // System.setProperty("javax.net.debug", "all");
-        Spider.create(new GithubRepoPageProcessor()).addUrl("https://github.com/code4craft")
+        Spider.create(new GithubRepoPageProcessor()).addUrl("https://github.com/puffershy/puffer-spider")
                 .addPipeline(new JsonFilePipeline("E:\\spider\\")).thread(5).run();
     }
 }
