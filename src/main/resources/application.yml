@@ -53,7 +53,7 @@ mybatis:
   # 实体别名扫描
   type-aliases-package: com.puffer.**.entity
   #自定义属性，mybatis扫描持久化层
-  mapper-scan-path: com.puffer.admin.mapper
+  mapper-scan-path: com.puffer.spider.dao
 
 jasypt:
   encryptor:

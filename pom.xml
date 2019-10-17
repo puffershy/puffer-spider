@@ -52,21 +52,27 @@
         </dependency>
 
         <!-- webmagic 依赖 begin-->
-        <!--<dependency>-->
-            <!--<groupId>us.codecraft</groupId>-->
-            <!--<artifactId>webmagic-core</artifactId>-->
-            <!--<version>0.4.2</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-core</artifactId>
+            <version>0.7.3</version>
+        </dependency>
         <dependency>
             <groupId>us.codecraft</groupId>
             <artifactId>webmagic-extension</artifactId>
-            <version>0.6.1</version>
+            <version>0.7.3</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.romewing</groupId>
             <artifactId>webmagic-spring-boot-starter</artifactId>
             <version>1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>us.codecraft</groupId>
+                    <artifactId>webmagic-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- webmagic 依赖 end-->
 
