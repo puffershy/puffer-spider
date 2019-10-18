@@ -32,5 +32,5 @@ public class AmazonItem {
     private String url;
 
     @ExtractBy("//*[@id=\"productDetails_detailBullets_sections1\"]/tbody/tr[7]/td/span/span[2]/text()")
-    private Integer rank;
+    private String rank;
 }
