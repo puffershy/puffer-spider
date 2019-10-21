@@ -1,5 +1,6 @@
 package com.puffer.spider.processor;
 
+import com.puffer.spider.common.constants.PatternConstants;
 import com.puffer.spider.common.util.PatterUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
@@ -58,7 +59,8 @@ public class AmazonPageProcessor implements PageProcessor {
             page.putField("url", url);
 
             //spu
-            page.putField("spu", PatterUtil.findSpu(url));
+            String spu = page.getUrl().regex(PatternConstants.SPU).toString();
+            page.putField("spu", spu);
         }
 
     }
@@ -86,7 +88,7 @@ public class AmazonPageProcessor implements PageProcessor {
         for (String xpath : xpahtList) {
             rank = page.getHtml().xpath(xpath).toString();
             if (StringUtils.isNotBlank(rank)) {
-                Matcher matcher = pattern.matcher(rank);
+                Matcher matcher = PatterUtil.instance(PatternConstants.NUMBER).matcher(rank);
                 matcher.find();
                 return matcher.group();
             }

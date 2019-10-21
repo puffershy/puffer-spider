@@ -27,7 +27,7 @@ public class PatterUtil {
         return value;
     }
 
-    public Pattern instance(String pattern) {
+    public static Pattern instance(String pattern) {
 
         if (patternMap.containsKey(pattern)) {
             return patternMap.get(pattern);
