@@ -1,4 +1,4 @@
-package com.puffer.spider.common;
+package com.puffer.spider.common.constants;
 
 /**
  * 常量

@@ -1,12 +1,10 @@
 package com.puffer.spider.crawler;
 
-import com.puffer.spider.common.Constants;
+import com.puffer.spider.common.constants.Constants;
 import com.puffer.spider.entity.AmazonItem;
 import com.puffer.spider.processor.AmazonItemPiperline;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.downloader.HttpClientDownloader;
-import us.codecraft.webmagic.proxy.Proxy;
-import us.codecraft.webmagic.proxy.SimpleProxyProvider;
 
 import javax.annotation.Resource;
 

@@ -1,6 +1,6 @@
 package com.puffer.spider.crawler;
 
-import com.puffer.spider.common.Constants;
+import com.puffer.spider.common.constants.Constants;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Site;

@@ -1,17 +1,14 @@
 package com.puffer.spider.processor;
 
-import com.puffer.spider.pipeline.GitHubPipeline2;
+import com.puffer.spider.common.util.PatterUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.pipeline.JsonFilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.List;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 亚马逊爬虫
@@ -28,8 +25,6 @@ public class AmazonPageProcessor implements PageProcessor {
     private static final String URL_LIST = "https://www.amazon.com/gp/new-releases/home-garden/13749881/ref=zg_bsnr_pg_\\d/146-8751176-4088033?ie=UTF8&pg=\\d";
     private static final String URL_POST = "";
 
-    Pattern pattern = Pattern.compile("(\\d+\\.\\d+)|(\\d+)");
-
     @Override
     public void process(Page page) {
 
@@ -43,22 +38,27 @@ public class AmazonPageProcessor implements PageProcessor {
             page.setSkip(true);
         } else {
             //商品标题
-
-            //*[@id="productTitle"]
             String title = page.getHtml().xpath("//*[@id=\"productTitle\"]/text()").toString();
             if (StringUtils.isBlank(title)) {
-                //skip this page
                 page.setSkip(true);
                 return;
             }
-
             page.putField("title", title);
+
+            //商品价格
             String price = getPrice(page);
             page.putField("price", price);
 
+            //排名
             String rank = getRank(page);
             page.putField("rank", rank);
-            page.putField("url", page.getUrl().toString());
+
+            //地址
+            String url = page.getUrl().toString();
+            page.putField("url", url);
+
+            //spu
+            page.putField("spu", PatterUtil.findSpu(url));
         }
 
     }
@@ -69,23 +69,23 @@ public class AmazonPageProcessor implements PageProcessor {
         xpahtList.add("//*[@id=\"priceblock_saleprice\"]/text()");
         String price = "";
         for (String xpath : xpahtList) {
-            price= page.getHtml().xpath(xpath).toString();
-            if(StringUtils.isNotBlank(price)){
+            price = page.getHtml().xpath(xpath).toString();
+            if (StringUtils.isNotBlank(price)) {
                 return price;
             }
         }
         return "";
     }
 
-    private String getRank(Page page){
+    private String getRank(Page page) {
         List<String> xpahtList = Lists.newArrayList();
         xpahtList.add("//*[@id=\"productDetails_detailBullets_sections1\"]/tbody/tr[7]/td/span/span[2]/text()");
         xpahtList.add("*[@id=\"productDetails_detailBullets_sections1\"]/tbody/tr[6]/td/span/span[2]/text()");
         xpahtList.add("//*[@id=\"productDetails_detailBullets_sections1\"]/tbody/tr[8]/td/span/span[3]/text()");
         String rank = "";
         for (String xpath : xpahtList) {
-            rank= page.getHtml().xpath(xpath).toString();
-            if(StringUtils.isNotBlank(rank)){
+            rank = page.getHtml().xpath(xpath).toString();
+            if (StringUtils.isNotBlank(rank)) {
                 Matcher matcher = pattern.matcher(rank);
                 matcher.find();
                 return matcher.group();

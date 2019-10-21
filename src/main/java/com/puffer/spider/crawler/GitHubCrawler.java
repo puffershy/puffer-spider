@@ -1,6 +1,6 @@
 package com.puffer.spider.crawler;
 
-import com.puffer.spider.common.Constants;
+import com.puffer.spider.common.constants.Constants;
 import com.puffer.spider.entity.GitHubRepo;
 import com.puffer.spider.pipeline.GitHubPipeline;
 import org.springframework.stereotype.Component;

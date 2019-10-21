@@ -1,4 +1,4 @@
-package com.puffer.spider.common;
+package com.puffer.spider.common.constants;
 
 /**
  * 正则表达式常量
@@ -21,6 +21,8 @@ public class PatternConstants {
      * @date 2019年10月20日 15:38:48
      * @since 1.0.0
      */
-    public static final String NUMBER = "(\\d+)(,(\\d){3})?(\\.\\d+)?";
+    public static final String NUMBER = "(\\d+)(,\\d{3})*(\\.\\d+)?";
 
+    public static final String SPU_PREFFIX = "/dp/";
+    public static final String SPU = "/dp/(\\w+)";
 }
