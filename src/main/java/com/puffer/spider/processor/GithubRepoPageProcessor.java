@@ -9,7 +9,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 /**
  * https://gitee.com/tanweijie/amazon-spider.git
  *
- * @author buyi
+ * @author puffer
  * @date 2019年10月12日 19:24:19
  * @since
  */

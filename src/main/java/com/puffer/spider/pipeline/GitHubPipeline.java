@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 /**
  * 亚马逊商品信息持久化
  *
- * @author buyi
+ * @author puffer
  * @date 2019年10月14日 22:47:47
  * @since 1.0.0
  */

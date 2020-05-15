@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * GitHub爬虫
  *
- * @author buyi
+ * @author puffer
  * @date 2019年10月18日 18:53:13
  * @since 1.0.0
  */

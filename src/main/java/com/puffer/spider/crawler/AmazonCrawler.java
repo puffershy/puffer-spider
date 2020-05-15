@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * 亚马逊爬虫
  *
- * @author buyi
+ * @author puffer
  * @date 2019年10月14日 23:27:37
  * @since
  */

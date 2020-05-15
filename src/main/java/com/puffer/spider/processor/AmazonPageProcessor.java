@@ -14,15 +14,17 @@ import java.util.regex.Matcher;
 /**
  * 亚马逊爬虫
  *
- * @author buyi
+ * @author puffer
  * @date 2019年10月13日 19:32:56
  * @since 1.0.0
  */
 public class AmazonPageProcessor implements PageProcessor {
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
-
-    private static final String URL_HELP = "https://www.amazon.com/gp/new-releases/home-garden/13749881/ref=zg_bs_tab_t_bsnr";
+    // https://www.amazon.com/Best-Sellers-Toys-Games-Kids-Party-Balloons/zgbs/toys-and-games/274321011/ref=zg_bs_nav_t_2_1266203011
+    // https://www.amazon.com/Best-Sellers-Toys-Games-Kids-Party-Balloons/zgbs/toys-and-games/274321011/ref=zg_bs_pg_2?_encoding=UTF8&pg=2
+    // private static final String URL_HELP = "https://www.amazon.com/gp/new-releases/home-garden/13749881/ref=zg_bs_tab_t_bsnr";
+    private static final String URL_HELP = "https://www.amazon.com/Best-Sellers-Toys-Games-Kids-Party-Balloons/zgbs/toys-and-games/274321011/ref=*";
     private static final String URL_LIST = "https://www.amazon.com/gp/new-releases/home-garden/13749881/ref=zg_bsnr_pg_\\d/146-8751176-4088033?ie=UTF8&pg=\\d";
     private static final String URL_POST = "";
 
@@ -48,10 +50,12 @@ public class AmazonPageProcessor implements PageProcessor {
 
             //商品价格
             String price = getPrice(page);
+            price =  price.replace("$","");
             page.putField("price", price);
 
             //排名
             String rank = getRank(page);
+            rank.replace(",","");
             page.putField("rank", rank);
 
             //地址

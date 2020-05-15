@@ -8,7 +8,7 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
 /**
  * github项目
  *
- * @author buyi
+ * @author puffer
  * @date 2019年10月18日 18:55:35
  * @since 1.0.0
  */

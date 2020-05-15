@@ -8,9 +8,9 @@
 
     <insert id="save" parameterType="com.puffer.spider.entity.AmazonItem">
       insert into tb_amazon_item
-      (type,title, price, url,rank)
+      (type,spu,title, price, url,rank,description,imageUrl)
       values
-        ( #{type}, #{title},#{price},#{url},#{rank})
+        ( #{type},#{spu},  #{title},#{price},#{url},#{rank}, #{description},#{imageUrl})
     </insert>
 
 </mapper>

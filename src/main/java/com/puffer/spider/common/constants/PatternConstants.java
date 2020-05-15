@@ -3,7 +3,7 @@ package com.puffer.spider.common.constants;
 /**
  * 正则表达式常量
  *
- * @author buyi
+ * @author puffer
  * @date 2019年10月20日 15:29:17
  * @since 1.0.0
  */
@@ -17,7 +17,7 @@ public class PatternConstants {
      * 123,113.123--123,113.123
      * 123,13.123--123
      *
-     * @author buyi
+     * @author puffer
      * @date 2019年10月20日 15:38:48
      * @since 1.0.0
      */

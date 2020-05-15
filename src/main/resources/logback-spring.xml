@@ -2,11 +2,11 @@
 <configuration scan="true" scanPeriod="30 seconds" debug="false">
 
 	<!-- 日志文件路径 -->
-	<springProperty scope="context" name="log.base" source="buyi.log.path"
-		defaultValue="/log/buyi-admin" />
+	<springProperty scope="context" name="log.base" source="puffer.log.path"
+		defaultValue="/log/puffer-admin" />
 	<!-- 日志文件最大 -->
 	<springProperty scope="context" name="maxFileSize"
-		source="buyi.log.size" defaultValue="2GB" />
+		source="puffer.log.size" defaultValue="2GB" />
 
 	<springProfile name="dev,test">
 		<property name="logPattern"

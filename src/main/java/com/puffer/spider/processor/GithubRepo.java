@@ -11,7 +11,7 @@ import us.codecraft.webmagic.model.annotation.HelpUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
 /**
- * @author buyi
+ * @author puffer
  * @date 2019年10月18日 19:15:37
  * @since
  */

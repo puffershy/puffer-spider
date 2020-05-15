@@ -17,11 +17,12 @@ public class AmazonItemDaoTest extends AbstractTest {
     public void testSave() {
 
         AmazonItem amazonItem = new AmazonItem();
+        amazonItem.setSpu("123");
         amazonItem.setType("1");
         amazonItem.setTitle("teset");
-        amazonItem.setPrice("teset");
+        // amazonItem.setPrice(19.26f);
         amazonItem.setUrl("teset");
-        amazonItem.setRank("teset");
+        amazonItem.setRank(123);
 
         amazonItemDao.save(amazonItem);
     }
