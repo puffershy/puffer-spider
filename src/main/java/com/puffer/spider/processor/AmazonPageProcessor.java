@@ -21,19 +21,16 @@ import java.util.regex.Matcher;
 public class AmazonPageProcessor implements PageProcessor {
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
-    // https://www.amazon.com/Best-Sellers-Toys-Games-Kids-Party-Balloons/zgbs/toys-and-games/274321011/ref=zg_bs_nav_t_2_1266203011
-    // https://www.amazon.com/Best-Sellers-Toys-Games-Kids-Party-Balloons/zgbs/toys-and-games/274321011/ref=zg_bs_pg_2?_encoding=UTF8&pg=2
-    // private static final String URL_HELP = "https://www.amazon.com/gp/new-releases/home-garden/13749881/ref=zg_bs_tab_t_bsnr";
-    private static final String URL_HELP = "https://www.amazon.com/Best-Sellers-Toys-Games-Kids-Party-Balloons/zgbs/toys-and-games/274321011/ref=*";
-    private static final String URL_LIST = "https://www.amazon.com/gp/new-releases/home-garden/13749881/ref=zg_bsnr_pg_\\d/146-8751176-4088033?ie=UTF8&pg=\\d";
-    private static final String URL_POST = "";
+    private static final String List_URL_PATTER = ".*Best-Sellers.*";
 
     @Override
     public void process(Page page) {
 
         //
-        if (page.getUrl().regex(URL_LIST).match() || page.getUrl().regex(URL_HELP).match()) {
-            //获取所有商品连接
+        if (page.getUrl().regex(List_URL_PATTER).match()) {
+            //如果当前页面是列表页面
+
+            //添加所有产品的连接
             page.addTargetRequests(page.getHtml().xpath("//*[@id=\"zg-right-col\"]").links().all());
 
             //获取所有分页的连接

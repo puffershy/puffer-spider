@@ -16,8 +16,10 @@ public class AmazonPageProcessorTest extends AbstractTest {
 
     @Test
     public void test(){
+
+        String url = "https://www.amazon.com/Best-Sellers-Kitchen-Dining-Novelty-Coffee-Mugs/zgbs/kitchen/9302388011/ref=zg_bs_pg_1?_encoding=UTF8&pg=1";
         Spider.create(new AmazonPageProcessor())
-                .addUrl("https://www.amazon.com/Best-Sellers-Toys-Games-Kids-Party-Balloons/zgbs/toys-and-games/274321011/ref=zg_bs_nav_t_2_1266203011")
+                .addUrl(url)
                 .addPipeline(gitHubPipeline2)
                 //开启5个线程抓取
                 .thread(5)

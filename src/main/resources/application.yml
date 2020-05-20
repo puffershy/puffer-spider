@@ -57,4 +57,4 @@ mybatis:
 
 jasypt:
   encryptor:
-    password: A#E$#sdf123
+    password: A#E$#sdf
